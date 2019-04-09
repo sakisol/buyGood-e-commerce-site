@@ -1,0 +1,320 @@
+/* buyGood CSS */
+
+/* Titles & main headers are  font-family: 'Shrikhand', cursive  */
+/* Subtitles are  font-family: 'Markazi Text', serif */
+/* Small text is font-family: 'Cormorant', serif */
+
+/* OTHER FONTS */
+  /* font-family: 'Cardo', serif;
+   font-family: 'Markazi Text', serif;
+    font-family: 'Cormorant', serif;
+    font-family: 'Just Another Hand', cursive; 
+    font-family: 'Shrikhand', cursive;*/
+
+body {
+    font-family: 'Cormorant', serif;
+    padding: 7px;
+}
+
+.siteTitle a {
+    color: black;
+}
+
+
+/* FOOTER STYLING */
+.list-unstyled li:hover {
+    /* color: black; */
+    color: lightseagreen;
+}
+
+.list-unstyled a:hover {
+    /* color: black; */
+    color: lightseagreen;
+    text-decoration: none; 
+}
+.footer {
+    height: 20vh;
+    /* background-color: lightseagreen; */
+    /* color: white; */
+    color: black;
+    border: solid;
+    border-color: lightseagreen;
+    border-width: thin;
+}
+.footer li a {
+    /* color: white;
+    text-decoration: none; */
+     color: black;
+}
+.copy  p {
+text-align:center;
+margin-top: 10px;
+color: black;
+}
+
+/* HTML TAG STYLING */
+/* A TAGS */
+.toolA { 
+    border-bottom: 1px dotted black;
+}
+
+.siteMission a:hover {
+    color: lightseagreen;
+    text-decoration: none;
+}
+
+.siteMission a {
+    color: black;
+}
+/* IMG */
+
+hr {
+    margin: 0;
+    padding: 0;
+}
+
+/* a.dropdown-menu.dropdown-item.active .dropdown-item:active {
+    background-color:#6aabb6;
+ 
+} */
+
+.basketnumber p {
+    font-size: 25px;
+}
+
+/* H TAGS */
+
+h1 {
+    margin-bottom: 0;
+    position: relative;
+}
+
+h2 {
+    font-family: 'Markazi Text', serif;
+    text-align: center; 
+}
+h3 {
+    font-family: 'Markazi Text', serif;
+    margin-bottom: 2px;
+} 
+
+h4 {
+    font-family: 'Shrikhand', cursive; 
+    position: absolute;
+    top: 65px;
+    padding-left: 185px;
+}
+
+.finalh4 {
+    font-family: 'Shrikhand', cursive; 
+    position: absolute;
+    top: 35px;
+    padding-left: 200px;
+}
+h6 {
+    color: lightseagreen;
+}
+
+/* GENERAL/MOST PAGES */
+.basket {
+    justify-content: flex-end;
+    min-height: 5vh;
+}
+
+.header  {
+    min-height: 50vh;
+    width: 100%;
+}
+
+
+.siteTitle  h1, em {
+    font-family: 'Shrikhand', cursive; 
+}
+
+.siteTitle a:hover {
+    color: lightseagreen;
+    text-decoration: none;
+}
+
+/* INDEX PAGE */
+.siteMission {
+width: 40%;
+align-self: center;
+text-align: center;
+}
+
+.midsection img{
+    width: 100%;
+}
+
+.blog-pagination a {
+    /* color: white; */
+}
+
+
+/* ALL THEMES PAGE */
+.themeheader {
+    height: 20vh;
+
+    }
+
+#themecardsection {
+   min-height: 80vh;
+   flex-wrap: wrap;
+   width: 92%;
+   margin: auto;
+   /* justify-content: space-between; */
+}
+
+.outerthemebox {
+ width: 225px;
+ /* margin-bottom: 10px; */
+ margin: 5px;
+}
+
+#middlebox {
+    height: 170px;
+    text-align: center;
+}
+
+.pleft {
+padding-left: 25px;
+padding-right: 0;
+text-align: center;
+}
+
+
+.card-text   {
+     bottom: 0; 
+    font-size: 10px;
+}
+
+.searchbox {
+    margin-bottom: 10px;
+}
+
+.basketicon {
+    height: 80px;
+    width: 80px;
+}
+
+/* FILTER ON THEME PAGE */
+
+.input-group {
+    width: 21%;
+}
+
+.input-group-text {
+    background-color: lightseagreen;
+    font-size: 14px;
+    font-family: 'Markazi Text', serif;
+
+}
+ option {
+    color: gray;
+}
+
+/* PROJECT DETAIL PAGE */
+
+#projectcard {
+    /* border: inset; */
+}
+
+#projDonateInfo {
+    /* border: inset; */
+}
+
+
+/* BUTTONS! */
+#projDonateInfo {
+    flex-direction: column;
+    justify-content: space-between;
+} 
+  
+.morebtn {
+width: 40%;
+text-align: center;
+}
+
+/* FINAL BASKET PAGE */
+
+.receipt {
+    border: inset;
+}
+
+.receiptitems {
+    height: 80vh;
+    overflow-y: scroll;
+}
+
+.total {
+    height: 5vh;
+    margin-bottom: 30px;
+}
+.paymentMeths  {
+margin-top: 15px;
+ padding: 10px;
+ height: 5vh;
+}
+
+.credit {
+    padding: 10px;
+}
+
+.paypal {
+    padding: 10px;
+}
+
+.finalbasket {
+  height: 5vh;
+  justify-content: flex-end;
+}
+.basketnumber {
+    padding: 5px;
+}
+
+.finalheader {
+    height: 20vh;
+}
+
+.sendNow {
+    height: 5vh;
+}
+/* IMAGE GRID  on FNAL BASKET PAGE*/
+/* Create two equal columns that sits next to each other */
+
+.finalimg {
+    display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+.column {
+    flex: 50%;
+    padding: 0 4px;
+  }
+  
+  .column img {
+    margin-top: 8px;
+    vertical-align: middle;
+  }
+
+
+  .donationinfo p{
+    font-size: 30px;
+  }
+
+/*  BLOG PAGE */
+
+.blogAs{
+    color:lightseagreen;
+}
+
+.jumbotron {
+    background-image: url(/img/makechange.jpg);
+    background-repeat: no-repeat;
+    background-size: cover; 
+    background-size:100% 500px;
+}
+.blog-post {
+    margin-bottom: 35px;
+}

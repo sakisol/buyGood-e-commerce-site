@@ -1,0 +1,611 @@
+<!-- buyGood -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- jQuery and fancybox files -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <link href="https://fonts.googleapis.com/css?family=Cardo|Cormorant|Just+Another+Hand|Markazi+Text|Shrikhand"
+    rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="css/buygood.css">
+
+  <title>buyGood</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <div class="container-fluid">
+
+      <div v-if="view == 'home'">
+        <div class="row">
+
+          <div class="header d-flex flex-column">
+            <div class="siteTitle text-center">
+              <h1>buyGood</h1>
+              <p>buy something good</p>
+            </div> <!-- end of div siteTitle-->
+
+            <div class="siteMission">
+              <p>We are not here to guilt you.
+                There is nothing wrong with shopping for things that you want, like and that make you smile.
+                <br>Here at <em>buyGood</em> ,we just encourage you to also <a href="#" data-toggle="tooltip"
+                  class="toolA" data-placement="right" title="make a donation :-)">"buy a thing"</a>
+                that can help someone else share the smile :-)</p>
+            </div> <!-- end of div siteMiss-->
+              <nav class="blog-pagination text-center">
+                <a class="btn btn-outline-info " @click="view ='allprojects'" tabindex="-1" aria-disabled="true">find
+                  something good</a>
+              </nav>
+          </div> <!-- end of div class header-->
+        </div> <!-- end of div class row -->
+
+        <div class="row">
+          <div class="col-12">
+            <div class="midsection">
+              <img src="./img/perrygronehands.jpg" class="img-fluid" alt="hands image">
+            </div><!-- end of div class midsection -->
+          </div><!-- end of div class col-12 -->
+        </div><!-- end of div class row -->
+      </div> <!-- END of div id "home" INDEX -->
+
+
+      <div v-if="view =='allprojects'">
+        <div class="row">
+          <div class="col-12">
+            <div class="basket d-flex">
+              <div class="col-12 basketIcon">
+                <!-- TO DO: basket icon will be link to basket page-->
+                <span><img @click="view ='basket'" src="./img/shopping-basket.png" class="float-right"
+                    alt="basket image"></span>
+              </div> <!-- end of div basketIcon-->
+              <div class="basketnumber">
+                <!-- <p>[{{basket.length}}]</p>  -->
+                <p v-for='project in basket'>{{project.id}}</p>
+              </div>
+            </div> <!-- end of div basket-->
+          </div> <!-- end of div class col-12 -->
+        </div> <!-- end of div class row -->
+
+
+        <div class="row">
+          <div class="col-12">
+            <div class="finalheader ">
+              <div class="siteTitle ">
+                <ul class="nav">
+                  <li class="nav-item-dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                      <h1>buyGood</h1>
+                    </a>
+                    <h4 class="finalh4">&#8725;all projects</h4>
+                    <div class="dropdown-menu">
+                      <a @click="view ='home'" class="dropdown-item" href="#">HOME</a>
+                      <a class="dropdown-item active" href="#">ALL PROJECTS</a>
+                      <a @click="view ='basket'" class="dropdown-item">YOUR BASKET</a>
+                      <a @click="view ='blog'" class="dropdown-item">BLOG</a>
+                    </div>
+                </ul>
+              </div> <!-- end of div siteTitle-->
+            </div><!-- end of div class finalheader-->
+          </div> <!-- end of div class col-12-->
+        </div> <!-- end of div class row -->
+
+
+        <div class="row">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">COUNTRY</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" v-model="selectedCountry">
+              <option selected value="all">all</option>
+              <option v-for="project in searchProjects">{{project.country}}</option>
+            </select>
+          </div>
+
+          <div class="input-group mb-3">
+            <select class="custom-select" id="inputGroupSelect02" v-model="selectedTheme">
+              <option selected value="all">all</option>
+              <option v-for="project in searchProjects">{{project.themeName}}</option>
+            </select>
+            <div class="input-group-append">
+              <label class="input-group-text" for="inputGroupSelect02">THEME</label>
+            </div>
+          </div>
+
+          <!-- <button @click="" id="findbtn">go back</button>
+          <button @click="getItems()" id="findbtn">find MORE good</button> -->
+
+          <nav class="blog-pagination">
+            <a class="btn btn-outline-secondary" @click="getHistory()"  href="#">previous goodness</a>
+            <a class="btn btn-outline-info " @click="getItems()" tabindex="-1" aria-disabled="true">find MORE good</a>
+          </nav>
+
+        </div>
+        <!-- end of div class row -->
+
+        <div class="row">
+          <div class="col-12">
+            <div id="themecardsection" class="d-flex">
+              <div class="outerthemebox" v-for="project in filterProjects" v-for="project in searchProjects"
+                v-bind:data-id="project.id" @click="view='projDetail'; goDetail(project)">
+                <div id="themebox" class="card">
+                  <img v-bind:src="project.image.imagelink[5].url" class="card-img-top" height="140px">
+                  <div id="middlebox" class="card-body">
+                    <h5 class="card-title">{{project.title}}</h5>
+                  </div>
+                  <div class="ps row">
+                    <div class="pleft col">
+                      <p class="card-text">{{project.themeName}}</p>
+                    </div>
+
+                    <div class="col">
+                      <p class="card-text ">{{project.country}}</p>
+                    </div>
+                  </div><!-- end of div ps row-->
+                </div><!-- end of div id themebox-->
+              </div><!-- end of div id outerthemebox-->
+            </div> <!-- end of div id themecardsection-->
+          </div> <!-- end of div class col-12  -->
+        </div> <!-- end of div class row  -->
+      </div><!-- end of div ALL PROJECTS-->
+
+
+      <div v-if="view == 'projDetail'">
+        <div class="row">
+          <div class="col-12">
+            <div class="basket d-flex">
+              <span><img @click="view ='basket'" src="./img/shopping-basket.png" class="basketIcon"
+                  alt="basket image"></span>
+              <div class="basketnumber">
+                <p v-for='project in basket'>{{project.id}}</p>
+                <!-- <p>[{{basket.length}}]</p> activate when page is finished  -->
+              </div>
+            </div>
+            <!-- end of div basket-->
+          </div>
+          <!-- end of div class col-12 -->
+        </div>
+        <!-- end of div class row -->
+
+        <div class="row">
+          <div class="col-12">
+            <div class="finalheader ">
+              <div class="siteTitle ">
+                <ul class="nav">
+                  <li class="nav-item-dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                      <h1>buyGood</h1>
+                    </a>
+                    <h4 class="finalh4">&#8725;{{selectedProj.title}}</h4>
+                    <div class="dropdown-menu">
+                      <a @click="view ='home'" class="dropdown-item" href="#">HOME</a>
+                      <a @click="view ='allprojects'" class="dropdown-item" href="#">ALL PROJECTS</a>
+                      <a @click="view ='basket'" class="dropdown-item" href="#">YOUR BASKET</a>
+                      <a @click="view ='blog'" class="dropdown-item">BLOG</a>
+                    </div>
+                </ul>
+              </div> <!-- end of div siteTitle-->
+            </div><!-- end of div class finalheader-->
+          </div> <!-- end of div class col-12-->
+        </div> <!-- end of div class row -->
+
+        <div class="row">
+          <div class="col-12">
+            <div class="selected">
+              <img v-bind:src="selectedProj.image.imagelink[5].url" width="100%">
+              <!-- <img v-bind:src="project.image.imagelink[5].url" width="100%"> -->
+            </div>
+          </div><!-- end of div class col-12 -->
+        </div><!-- end of div class row -->
+
+        <div class="row">
+          <div class="projectinfo col-12 d-flex">
+
+            <div id="projectcard" class="col-8">
+
+              <h2>{{selectedProj.title}}</h2>
+
+              <h3>Summary</h3>
+              <p>{{selectedProj.summary}}</p>
+
+              <h3>Long Term Impact</h3>
+              <p>{{selectedProj.longTermImpact}}</p>
+
+              <h3>Need</h3>
+              <p>{{selectedProj.need}}</p>
+
+            </div><!-- end of div id projectcard -->
+
+            <div id="projDonateInfo" class=" d-flex col-4">
+              <div class="donationinfo">
+                <p> &euro; {{selectedProj.donationOptions.donationOption[0].amount}}*</p>
+                <h6>*the minimum requested by the project organisation</h6>
+              </div>
+              <hr/>
+              <!-- v-for="selected in searchProjects" -->
+              <!-- <div class="addDonation"> -->
+                 <img class="basketicon" @click="addtoBasket(selectedProj)" src="./img/addbasket.png"
+                    alt="basket image"> <p>CONTRIBUTE </p>  
+                    <h6>*a <a href="#" data-toggle="tooltip"
+                      class="toolA" data-placement="bottom" title="10% off!">discount</a> applies for dontation to 6 or more projects*</h6>
+
+
+              <!-- </div> -->
+              <hr/>
+              <!-- <div class="removeDonation"> -->
+                <!-- <button> -->
+                  <img class="basketicon" v-on:click="removefromBasket(selectedProj)" src="./img/emptybasket.png"
+                    alt="basket image">REMOVE
+                  
+                  <!-- </button> -->
+              <!-- </div> -->
+            </div><!-- end of div id projectcard -->
+          </div><!-- end of div class col-12 -->
+        </div><!-- end of div class row -->
+      </div> <!-- end of div projDetail-->
+
+      <div v-if="view == 'basket'">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 d-flex">
+              <div class="finalheader col-12">
+                <div class="siteTitle ">
+                  <ul class="nav">
+                    <li class="nav-item dropdown">
+                      <a class="nav-link" data-toggle="dropdown" href="#">
+                        <h1>buyGood</h1>
+                      </a>
+                      <h4 class="finalh4">&#8725;myBasket</h4>
+                      <div class="dropdown-menu">
+                        <a @click="view ='home'" class="dropdown-item" href="#">HOME</a>
+                        <a @click="view ='allprojects'" class="dropdown-item" href="#">ALL PROJECTS</a>
+                        <a @click="view ='basket'" class="dropdown-item active">YOUR BASKET</a>
+                        <a @click="view ='blog'" class="dropdown-item">BLOG</a>
+                      </div>
+                  </ul>
+                </div> <!-- end of div siteTitle-->
+              </div> <!-- end of div class themeheader-->
+            </div> <!-- end of div class col-12 -->
+          </div> <!-- end of div class row -->
+
+          <div class="row">
+            <div class="d-flex col-8">
+              <div class="finalimg">
+                <div class="column">
+                  <img src="./img/thankyou.jpg" style="width:100%">
+                  <img src="./img/kenyacharity.jpg" style="width:100%">
+                </div>
+                <div class="column">
+                  <img src="./img/watergirls.jpg" style="width:100%">
+                  <img src="./img/dosomething.jpg" style="width:100%">
+                  <img src="./img/cutekid.jpg" style="width:100%">
+                </div>
+              </div><!-- end of div finalimg-->
+            </div> <!-- end of div class dflex col-8 -->
+
+
+            <div class="receipt col-4 ">
+              <div class=" d-flex finalbasket">
+                <img src="./img/shopping-basket.png" class="basketIcon" alt="basket image">
+                <div class="basketnumber">
+                  <p>{{basket.length}} project(s) </p>
+                </div>
+              </div> <!-- end of div finalbasket-->
+
+              <div class="col">
+                <h3 class="sendNow">Send my help now...</h3>
+              </div>
+              <div class="receiptitems">
+
+                <div v-for="selected in getBasket">
+                  <h5>{{ selected.quantity }} x {{selected.id}} - {{ selected.title }}</h5>
+                  <p>&euro;{{selected.donationOptions.donationOption[0].amount * selected.quantity}}</p>
+
+                  <div class="quantity-toggle">
+                    <button @click="removefromBasket(selected)">&mdash;</button>
+                    <button @click="addtoBasket(selected)">&#xff0b;</button>
+                  </div>
+                  <hr />
+                </div><!-- end of div v-for-->
+                <hr />
+              </div><!-- end of div receiptitems-->
+              <div class="total">
+                <hr />
+                <div>
+                  <p v-show="basket.length > 0">SUBTOTAL - &euro;{{subtotal}}</p>
+                  <p v-show="basket.length > 0">TOTAL - &euro;{{total}}</p>
+                  <p v-show="basket.length > 4" >TOTAL -&euro;{{free}}</p>
+                  <!-- add an alert for receivng the "free item" -->
+                  <p>*discount applies for donation to 6 or more projects*</p>
+                </div>
+              </div>
+              <hr />
+              <div class="paymentMeths d-flex ">
+                <div class="credit">
+                  <img src="./img/visa.png" alt="cc image">
+                </div>
+                <div class="paypal">
+                  <img src="./img/mastercard.png" alt="pp image">
+                </div>
+                <div class="paypal">
+                  <img src="./img/paypal.png" alt="pp image">
+                </div>
+              </div><!-- end of div class paymentMeths -->
+
+            </div><!-- end of div class receipt col-4 -->
+           
+          </div> <!-- end of div class row -->
+        </div> <!-- end of div class container-fluid -->
+      </div> <!-- end of div "basket"-->
+<!-- <div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
+      <div v-if="view == 'blog'">
+
+        <div class="row">
+          <div class="col-12 d-flex">
+            <div class="finalheader col-12">
+              <div class="siteTitle ">
+                <ul class="nav">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                      <h1>buyGood</h1>
+                    </a>
+                    <h4 class="finalh4">&#8725;blog</h4>
+                    <div class="dropdown-menu">
+                      <a @click="view ='home'" class="dropdown-item" href="#">HOME</a>
+                      <a @click="view ='allprojects'" class="dropdown-item" href="#">ALL PROJECTS</a>
+                      <a @click="view ='basket'" class="dropdown-item">YOUR BASKET</a>
+                      <a @click="view ='blog'" class="dropdown-item active">BLOG</a>
+                    </div>
+                </ul>
+              </div> <!-- end of div siteTitle-->
+            </div> <!-- end of div class themeheader-->
+          </div> <!-- end of div class col-12 -->
+        </div> <!-- end of div class row -->
+
+        <div class="nav-scroller py-1 mb-2">
+          <nav class="nav d-flex justify-content-between">
+            <a class="p-2 text-muted" href="#Phila">Philanthropy</a>
+            <a class="p-2 text-muted" href="#SocialMedia">Social Media</a>
+            <a class="p-2 text-muted" href="https://www.techsoup.org/" target="_blank">Nonprofit Tech</a>
+            <a class="p-2 text-muted" href="https://designforadifference.com/" target="_blank">Design + Charity</a>
+            <a class="p-2 text-muted" href="https://www.kiva.org/" target="_blank">Microloans</a>
+            <a class="p-2 text-muted" href="https://nonprofitquarterly.org/tag/nonprofit-financial-management/"
+              target="_blank">Business</a>
+            <a class="p-2 text-muted" href="https://www.nationalgeographic.com/environment/"
+              target="_blank">Environment</a>
+          </nav>
+        </div><!-- end of div class nav scroller -->
+
+        <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+          <div class="col-md-8 px-0">
+            <h1 class="display-4 font-italic">The best online fundraising platforms for charities</h1>
+            <p class="lead my-3">Charity Digital News UK lists some of the best cheap and free online fundraising
+              platforms for charities.</p>
+            <p class="lead mb-0"><a href="#B1" class="text-white font-weight-bold">Continue reading...</a></p>
+          </div>
+        </div>
+
+        <div class="row mb-2">
+          <div id="SocialMedia" class="col-md-6">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-info">Social Media</strong>
+                <h3 class="mb-0">Instagram's new donation sticker will make it easy to give money to charities</h3>
+                <div class="mb-1 text-muted">Feb 07 by Victoria Rodriguez</div>
+                <!-- <a href="https://mashable.com/author/victoria-rodriguez/?europe=true" class="blogAs" target="_blank"></a> -->
+                <p class="card-text mb-auto">When you take a selfie or record a video on Instagram Stories, you can add
+                  location stickers, question stickers, and even a GIF of a cat playing the electric guitar.
+                  Later this year, you'll be able to raise funds for a nonprofit, too. </p>
+                <a href="https://mashable.com/article/instagram-donation-sticker/?europe=true" target="_blank">Continue
+                  reading</a>
+              </div>
+              <div class="col-auto d-none d-lg-block">
+                <img src="./img/instagramsticker.jpg" width="300" height="290">
+              </div>
+            </div>
+          </div>
+          <div id="Phila" class="col-md-6">
+            <div
+              class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-info">Philanthropy</strong>
+                <h3 class="mb-0">Bezoses and Bloomberg Top Chronicle List of the 50 Donors Who Gave the Most to Charity
+                </h3>
+                <div class="mb-1 text-muted">Feb 19 by Maria Di Mento</div>
+                <p class="card-text mb-auto">Donors on the Philanthropy 50, the Chronicle’s annual list of the people
+                  who gave the most to charity, contributed a total of more than $7.8 billion last year...</p>
+                <a href="https://www.philanthropy.com/specialreport/bezoses-and-bloomberg-top-chro/198?cid=FEATUREDNAV"
+                  target="_blank">Continue reading</a>
+              </div>
+              <div class="col-auto d-none d-lg-block">
+                <img src="./img/billionaires.jpg" width="330" height="290">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+            <!-- blog-main -->
+          <div class="col-md-8 ">
+            <h3 class="pb-4 mb-4 font-italic border-bottom">
+              Articles from the charitable community
+            </h3>
+
+            <div class="blog-post">
+              <h2 id="B1" class="blog-post-title">The best online fundraising platforms for charities</h2>
+              <p class="blog-post-meta">21 February 2019 by <a
+                  href="https://www.charitydigitalnews.co.uk/author/chloegreen/" class="blogAs" target="_blank">Chloe
+                  Green @Charity Digital News UK</a></p>
+              <hr>
+              <p>There has been an explosion in the number of dedicated online fundraising plaforms for fundraising,
+                letting charities and their supporters quickly and effectively raise money.
+                But not all of them are free to use, or as cost effective for charities.</p>
+
+              <p><a href="https://www.justgiving.com/" class="blogAs" target="_blank">JustGiving</a> was one of the
+                first online fundraising platforms, having collected over £4 billion for charities since its launch in
+                2001. But the company deducts a 5% fee from each donation made through the site and charges a monthly
+                fee for charities.
+                The other go-to platform, <a href="https://uk.virginmoneygiving.com/giving/" class="blogAs"
+                  target="_blank">Virgin Money Giving</a>, charges a £150 fee to register.</p>
+              <p>There are alternatives platforms that take a much smaller cut from donations and do not charge a
+                subscription fee. Some have slightly different models, or are aimed at certain types of fundraising.</p>
+
+              <p> Chloe Green explored a few below that you might now know about. Check out <a
+                  href="https://www.charitydigitalnews.co.uk/2019/02/21/the-best-free-online-fundraising-platforms-for-charities/"
+                  class="blogAs" target="_blank">her article</a>...</p>
+              <hr>
+            </div><!-- /.blog-post -->
+
+            <div class="blog-post">
+              <h2 id="B1" class="blog-post-title">Let’s talk about…transparent pricing</h2>
+              <p class="blog-post-meta">01 April 2019 by <a href="https://my.virginmoney.com/author/jasmine/"
+                  class="blogAs" target="_blank">Jasmine @Virgin Money</a></p>
+              <hr>
+              <p>Change is in the air when it comes to digital fundraising. BT MyDonate closes its free service at the
+                end of June, JustGiving has announced a change to its pricing structure,
+                new entrants such as Facebook and GoFundMe are being more vocal in the market and Virgin Money Giving is
+                now part of the bigger CYBG banking group...</p>
+
+              <p>Learn more <a
+                  href="https://my.virginmoney.com/category/virgin-money-giving-for-charities/charity-insider/"
+                  class="blogAs" target="_blank">here</a>...</p>
+              <hr>
+            </div><!-- /.blog-post -->
+
+            <div class="blog-post">
+              <h2 id="B1" class="blog-post-title">The SMART Way to Create Fundraising Goals</h2>
+              <p class="blog-post-meta">05 April 2019 by <a href="https://www.classy.org/blog/author/allison/"
+                  class="blogAs" target="_blank">Allison Gauss @Classy</a></p>
+
+              <p>Defining SMART goals...</p>
+              <hr>
+              <p>If you’re looking to increase donations for your nonprofit organization, your first move will be to
+                evaluate and validate the fundraising goals you set for your organization.
+                Most nonprofits have fundraising goals, but not all goals are created equal...</p>
+
+              <p>Read more <a href="https://www.classy.org/blog/the-smart-way-to-create-fundraising-goals/"
+                  class="blogAs" target="_blank">here</a>...</p>
+            </div><!-- /.blog-post -->
+          </div><!-- /.blog-main -->
+
+          <aside class="col-md-4 blog-sidebar">
+            <div class="p-4 mb-3 bg-light rounded">
+              <!-- <h4 image here?</h4> -->
+            </div>
+
+            <div class="p-4">
+              <h6 class="font-italic">Charitable Sites to visit:</h6>
+              <ol class="list-unstyled">
+                <li><a href="https://www.globalgiving.org/" target="_blank">GobalGiving</a></li>
+                <li><a href="https://nonprofitquarterly.org/" target="_blank">Nonprofit Quarterly</a></li>
+                <li><a href="https://www.charitywater.org/" target="_blank">charity: water</a></li>
+                <li><a href="https://www.justgiving.com/" target="_blank">JustGiving</a></li>
+                <li><a href="https://www.humanesociety.org/" target="_blank">The Humane Society</a></li>
+                <li><a href="https://www.unicef.org/" target="_blank">Unicef</a></li>
+                <li><a href="https://uk.virginmoneygiving.com/giving/" target="_blank">Virgin Money Giving</a></li>
+                <li><a href="https://www.classy.org/" target="_blank">Classy</a></li>
+                <li><a href="https://www.philanthropy.com/" target="_blank">Chronicle of Philanthropy</a></li>
+              </ol>
+            </div>
+
+            <div class="p-4">
+              <h6 class="font-italic">Social Platforms + Charity:</h6>
+              <ol class="list-unstyled">
+                <li><a href="https://github.com/nonprofit" target="_blank">GitHub for Good</a></li>
+                <li><a href="https://twitter.com/charitynav?lang=en" target="_blank">Twitter/@Charity Navigator</a></li>
+                <li><a
+                    href="https://blog.techsoup.org/posts/the-top-10-nonprofit-instagram-accounts-what-to-learn-from-them"
+                    target="_blank">Instagram</a></li>
+              </ol>
+            </div>
+          </aside><!-- /.blog-sidebar -->
+
+        </div><!-- /.row -->
+        <footer class="blog-footer">
+            <p>
+              <a href="#">Back to top</a>
+            </p>
+            <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a
+                href="https://twitter.com/mdo">@mdo</a>.</p>
+    
+          </footer>
+
+      </div> <!-- end of v-if blog-->
+     
+      <div class="row ">
+          <div class="col-12 footer d-flex ">
+            <div class="col"> 
+              <ol class="list-unstyled">
+                <p>Our Partners:</p>
+                <li><a href="https://www.globalgiving.org/" target="_blank">GlobalGiving</a></li>
+              </ol>
+            </div>
+            <div class="col"> 
+              <ol class="list-unstyled"> 
+                <p>.........</p>
+                <li @click="view ='blog'">Blog</li>
+                <li @click="view ='allprojects'">Projects</li>
+                <li @click="view ='basket'">Basket</li>
+              </ol>
+              </div>
+              <div class="col">
+                <ol class="list-unstyled">
+                  <p>.........</p>
+                  <li><a href="#" target="_blank">Privacy Policy</a></li>
+                  <li><a href="#" target="_blank">site Credits</a></li>
+                  <p>site designed by sakisol</p>
+                  <!-- <li>site built by Saki Solis</li> -->
+                </ol>
+              </div>
+             
+            </div><!-- end of div class footer col-12 -->
+        </div> <!-- end of div class row -->
+        <div class=""> 
+        <div class="copy">
+            <p>Copyright &copy; 2019</p>
+          </div><!-- end of div class copy -->
+        </div>
+  </div> <!-- end of div container-fluid -->
+  </div> <!-- end of div id app -->
+
+
+  <!-- SCRIPT SECTION -->
+  <!-- NOTE: jQuery first, then Popper.js, then Bootstrap JS -->
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <!--  FANCYBOX SCRIPTS -->
+  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+  <!-- Script from GETBOOTSTRAP.COM -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
