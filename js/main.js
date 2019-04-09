@@ -45,7 +45,7 @@ var app = new Vue({
                 app.nextprojID = "&nextProjectId=" + data.projects.nextProjectId
                 console.log(app.nextprojID);
                 
-                
+        
                 // console.log(history)
                 
 

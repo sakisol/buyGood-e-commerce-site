@@ -237,7 +237,8 @@
                  <img class="basketicon" @click="addtoBasket(selectedProj)" src="./img/addbasket.png"
                     alt="basket image"> <p>CONTRIBUTE </p>  
                     <h6>*a <a href="#" data-toggle="tooltip"
-                      class="toolA" data-placement="bottom" title="10% off!">discount</a> applies for dontation to 6 or more projects*</h6>
+                      class="toolA" data-placement="bottom" title="10% off!">discount</a> applies for dontation to 3 or more projects*</h6>
+                      <p>*the least expensive donation is *paid for by buyGood*(removed) after donation to 4 or projects </p>  
 
 
               <!-- </div> -->
@@ -326,7 +327,8 @@
                   <p v-show="basket.length > 0">TOTAL - &euro;{{total}}</p>
                   <p v-show="basket.length > 4" >TOTAL -&euro;{{free}}</p>
                   <!-- add an alert for receivng the "free item" -->
-                  <p>*discount applies for donation to 6 or more projects*</p>
+                  <p>* 10% total after donation to 3+ projects*</p>
+                  <p>* 1 donation is removed after donation to 4+ projects*</p>
                 </div>
               </div>
               <hr />
