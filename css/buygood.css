@@ -319,7 +319,7 @@ text-align: center;
 }
 
 .jumbotron {
-    background-image: url(/img/makechange.jpg);
+    background-image: url(./img/makechange.jpg);
     background-repeat: no-repeat;
     background-size: cover; 
     background-size:100% 500px;
