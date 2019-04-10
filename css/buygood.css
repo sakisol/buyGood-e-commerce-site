@@ -33,7 +33,7 @@ body {
     text-decoration: none; 
 }
 .footer {
-    height: 20vh;
+    /* height: 10vh; */
     /* background-color: lightseagreen; */
     /* color: white; */
     color: black;
@@ -240,29 +240,38 @@ text-align: center;
 
 .receipt {
     border: inset;
+    position: relative;
 }
 
 .receiptitems {
-    height: 80vh;
+    height: 60vh;
     overflow-y: scroll;
 }
 
 .total {
-    height: 10vh;
-    margin-bottom: 30px;
+    /* height: 5vh; */
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 85px;
 }
 .paymentMeths  {
-margin-top: 15px;
- padding: 10px;
- height: 5vh;
+    position: absolute;
+    bottom: 0;
+    left: 10%;
 }
 
-.credit {
-    padding: 10px;
+.masterc {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+.visa {
+    padding-right: 30px;
+    padding-left: 30px;
 }
 
 .paypal {
-    padding: 10px;
+    padding-right:30px;
+    padding-left: 30px;
 }
 
 .finalbasket {
@@ -318,3 +327,69 @@ margin-top: 15px;
 .blog-post {
     margin-bottom: 35px;
 }
+
+/* MEDIA QUERIES */
+
+
+@media screen and (max-width: 480px){
+    .siteMission {
+      width: 90%;
+    }
+  
+    .footer {
+      margin-top: 5px;
+    }
+
+    .media2hide {display: none;}
+  
+    .designedby {
+        font-size: 10px;
+        /* color:lightseagreen; */
+    }
+    .footer img {
+        padding: 10px;
+    }
+  }
+
+  @media screen and (min-width: 481px){
+    
+    .showmob {display: none;}
+
+   
+
+  }
+
+
+
+  /* #themecardsection {
+    /*    min-height: 80vh; */
+    /*    flex-wrap: wrap; */
+    /*    width: 92%; */
+    /*    margin: auto; */
+       /* justify-content: space-between; 
+    }
+    
+    .outerthemebox {
+    /*  width: 225px; */
+     /* margin-bottom: 10px; 
+     margin: 5px;
+    }
+    
+    #middlebox {
+    /*     height: 170px; 
+        text-align: center;
+    }
+    
+        
+      }
+    
+    /* LARGER THAN MOBILE SCREEN */
+    
+      /* @media screen and (min-width: 481px){
+        
+        .showmob {display: none;}
+    
+      } */
+     /* 
+
+  

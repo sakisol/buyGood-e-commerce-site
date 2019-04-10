@@ -133,6 +133,7 @@
         </div>
         <!-- end of div class row -->
 
+
         <div class="row">
           <div class="col-12">
             <div id="themecardsection" class="d-flex">
@@ -157,6 +158,10 @@
             </div> <!-- end of div id themecardsection-->
           </div> <!-- end of div class col-12  -->
         </div> <!-- end of div class row  -->
+
+       
+
+
       </div><!-- end of div ALL PROJECTS-->
 
 
@@ -321,22 +326,24 @@
                 <hr />
               </div><!-- end of div receiptitems-->
               <div class="total">
-                <hr />
+                <!-- <hr /> -->
                 <div>
-                  <p v-show="basket.length > 0">SUBTOTAL - &euro;{{subtotal}}</p>
-                  <p v-show="basket.length > 0">TOTAL - &euro;{{total}}</p>
+                    <hr />
+                  <p v-show="basket.length >= 0">SUBTOTAL - &euro;{{subtotal}}</p>
+                  <p v-show="basket.length >= 0">TOTAL - &euro;{{total}}</p>
                   <p v-show="basket.length > 4" >TOTAL -&euro;{{free}}</p>
                   <!-- add an alert for receivng the "free item" -->
                   <p>* 10% total after donation to 3+ projects*</p>
                   <p>* 1 donation is removed after donation to 4+ projects*</p>
+                  <hr />
                 </div>
               </div>
-              <hr />
+           
               <div class="paymentMeths d-flex ">
-                <div class="credit">
+                <div class="visa">
                   <img src="./img/visa.png" alt="cc image">
                 </div>
-                <div class="paypal">
+                <div class="masterc">
                   <img src="./img/mastercard.png" alt="pp image">
                 </div>
                 <div class="paypal">
@@ -546,29 +553,40 @@
       <div class="row ">
           <div class="col-12 footer d-flex ">
             <div class="col"> 
-              <ol class="list-unstyled">
-                <p>Our Partners:</p>
-                <li><a href="https://www.globalgiving.org/" target="_blank">GlobalGiving</a></li>
+              <ol class="list-unstyled" >
+                <p class="media2hide">Our Partners:</p>
+                <li class="media2hide"><a href="https://www.globalgiving.org/" target="_blank">GlobalGiving</a></li>
+                <a href="https://www.globalgiving.org/"><img class="showmob" src="img/GGlogo.png" height="50px" width="60px"></a>
+
               </ol>
             </div>
             <div class="col"> 
               <ol class="list-unstyled"> 
-                <p>.........</p>
-                <li @click="view ='blog'">Blog</li>
-                <li @click="view ='allprojects'">Projects</li>
-                <li @click="view ='basket'">Basket</li>
+                <p class="media2hide">Pages:</p>
+                <li class="media2hide" @click="view ='allprojects'">Projects</li>
+                <img class="showmob"  @click="view ='allprojects'" src="img/idea32p.png">
+                <li  class="media2hide" @click="view ='basket'">Basket</li>
+                <li class="media2hide" @click="view ='blog'">Blog</li>
               </ol>
               </div>
+
+              <div class="col showmob"> 
+                  <ol class="list-unstyled"> 
+                    <img class="showmob"   @click="view ='blog'" src="img/blog32p.png">
+                  </ol>
+                  </div>
+
               <div class="col">
                 <ol class="list-unstyled">
-                  <p>.........</p>
-                  <li><a href="#" target="_blank">Privacy Policy</a></li>
-                  <li><a href="#" target="_blank">site Credits</a></li>
-                  <p>site designed by sakisol</p>
-                  <!-- <li>site built by Saki Solis</li> -->
+                  <p class="media2hide">.........</p>
+                  <li class="media2hide"><a href="#" target="_blank">Privacy Policy</a></li>
+                  <li class="media2hide"><a href="#" target="_blank">site Credits</a></li>
+                  <p class="designedby">site designed by sakisol</p>
                 </ol>
               </div>
-             
+      
+
+
             </div><!-- end of div class footer col-12 -->
         </div> <!-- end of div class row -->
         <div class=""> 
