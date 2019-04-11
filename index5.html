@@ -43,7 +43,7 @@
                   class="toolA" data-placement="right" title="make a donation :-)">"buy a thing"</a>
                 that can help someone else share the smile :-)</p>
             </div> <!-- end of div siteMiss-->
-              <nav class="text-center">
+              <nav class="blog-pagination text-center">
                 <a class="btn btn-outline-info " @click="view ='allprojects'" tabindex="-1" aria-disabled="true">find
                   something good</a>
               </nav>
@@ -102,15 +102,7 @@
 
 
         <div class="row">
-          <div class="d-flex blog-pagination"> 
-            <nav class="">
-                <a class="btn btn-outline-secondary" @click="getHistory()"  href="#">previous goodness</a>
-                <a class="btn btn-outline-info " @click="getItems()" tabindex="-1" aria-disabled="true">find MORE good</a>
-              </nav>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-group mb-3 col-6 col-lg-3" >
+          <div class="input-group mb-3">
             <div class="input-group-prepend">
               <label class="input-group-text" for="inputGroupSelect01">COUNTRY</label>
             </div>
@@ -120,7 +112,7 @@
             </select>
           </div>
 
-          <div class="input-group mb-3 col-6 col-lg-3">
+          <div class="input-group mb-3">
             <select class="custom-select" id="inputGroupSelect02" v-model="selectedTheme">
               <option selected value="all">all</option>
               <option v-for="project in searchProjects">{{project.themeName}}</option>
@@ -130,6 +122,13 @@
             </div>
           </div>
 
+          <!-- <button @click="" id="findbtn">go back</button>
+          <button @click="getItems()" id="findbtn">find MORE good</button> -->
+
+          <nav class="blog-pagination">
+            <a class="btn btn-outline-secondary" @click="getHistory()"  href="#">previous goodness</a>
+            <a class="btn btn-outline-info " @click="getItems()" tabindex="-1" aria-disabled="true">find MORE good</a>
+          </nav>
 
         </div>
         <!-- end of div class row -->
@@ -137,10 +136,10 @@
 
         <div class="row">
           <div class="col-12">
-            <div id="themecardsection" class="d-flex">
-              <div class="outerthemebox" v-for="project in filterProjects" v-for="project in searchProjects"
-                v-bind:data-id="project.id" @click="view='projDetail'; goDetail(project)">
-                <div id="themebox" class="card">
+            <div id="themecardsection" class="d-flex row">
+              <div class="outerthemebox" v-for="project, index in filterProjects" v-for="project in searchProjects"
+                v-bind:data-id="project.id" v-if="index =" >
+                <div id="themebox" class="card" @click="view='projDetail'; goDetail(project)">
                   <img v-bind:src="project.image.imagelink[5].url" class="card-img-top" height="140px">
                   <div id="middlebox" class="card-body">
                     <h5 class="card-title">{{project.title}}</h5>
@@ -209,6 +208,7 @@
           <div class="col-12">
             <div class="selected">
               <img v-bind:src="selectedProj.image.imagelink[5].url" width="100%">
+              <!-- <img v-bind:src="project.image.imagelink[5].url" width="100%"> -->
             </div>
           </div><!-- end of div class col-12 -->
         </div><!-- end of div class row -->
@@ -243,7 +243,7 @@
                     alt="basket image"> <p>CONTRIBUTE </p>  
                     <h6>*a <a href="#" data-toggle="tooltip"
                       class="toolA" data-placement="bottom" title="10% off!">discount</a> applies for dontation to 3 or more projects*</h6>
-                      <h6>*the least expensive donation is *paid for by buyGood*(removed) after donation to 4 or projects </h6>  
+                      <p>*the least expensive donation is *paid for by buyGood*(removed) after donation to 4 or projects </p>  
 
 
               <!-- </div> -->
@@ -285,33 +285,22 @@
           </div> <!-- end of div class row -->
 
           <div class="row">
-            <div class="d-flex col-sm-6 col-lg-8">
+            <div class="d-flex col-8">
               <div class="finalimg">
                 <div class="column">
                   <img src="./img/thankyou.jpg" style="width:100%">
                   <img src="./img/kenyacharity.jpg" style="width:100%">
-                <!-- hide the below imgs for large screens -->
-                  <img src="./img/watergirls.jpg" style="width:100%">
-                  <img src="./img/dosomething.jpg" style="width:100%">
-                  <img src="./img/cutekid.jpg" style="width:100%">
-                  <img src="./img/watergirls.jpg" style="width:100%">
-                  <img src="./img/thankyou.jpg" style="width:100%">
                 </div>
                 <div class="column">
                   <img src="./img/watergirls.jpg" style="width:100%">
                   <img src="./img/dosomething.jpg" style="width:100%">
                   <img src="./img/cutekid.jpg" style="width:100%">
-                <!-- hide the below imgs for large screens -->
-                  <img src="./img/thankyou.jpg" style="width:100%">
-                  <img src="./img/kenyacharity.jpg" style="width:100%">
-                  <img src="./img/thankyou.jpg" style="width:100%">
-                  <img src="./img/kenyacharity.jpg" style="width:100%">
                 </div>
               </div><!-- end of div finalimg-->
             </div> <!-- end of div class dflex col-8 -->
 
 
-            <div class="receipt col-sm-6 col-lg-4 ">
+            <div class="receipt col-4 ">
               <div class=" d-flex finalbasket">
                 <img src="./img/shopping-basket.png" class="basketIcon" alt="basket image">
                 <div class="basketnumber">
@@ -405,6 +394,20 @@
               target="_blank">Environment</a>
           </nav>
         </div><!-- end of div class nav scroller -->
+
+        <!-- <div class="jumbotron jumbotron-billboard p-4 p-md-5 text-white rounded">
+          <div class="img"> 
+            <div class="container">
+          <div class="col-md-8 px-0">
+            <h1 class="display-4 font-italic">The best online fundraising platforms for charities</h1>
+            <p class="lead my-3">Charity Digital News UK lists some of the best cheap and free online fundraising
+              platforms for charities.</p>
+            <p class="lead mb-0"><a href="#B1" class="text-white font-weight-bold">Continue reading...</a></p>
+          </div>
+        </div>
+        </div>
+        </div> -->
+
 
         <div class="jumbotron  p-4 p-md-5 text-white rounded">
               <div class="col-md-8 px-0">

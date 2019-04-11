@@ -147,8 +147,10 @@ text-align: center;
     width: 100%;
 }
 
-.blog-pagination a {
-    /* color: white; */
+.blog-pagination {
+    margin-left:auto; 
+    margin-right:50px;
+    margin-bottom: 5px;
 }
 
 
@@ -216,13 +218,6 @@ text-align: center;
 
 /* PROJECT DETAIL PAGE */
 
-#projectcard {
-    /* border: inset; */
-}
-
-#projDonateInfo {
-    /* border: inset; */
-}
 
 
 /* BUTTONS! */
@@ -249,7 +244,6 @@ text-align: center;
 }
 
 .total {
-    /* height: 5vh; */
     position: absolute;
     bottom: 0;
     margin-bottom: 85px;
@@ -318,12 +312,17 @@ text-align: center;
     color:lightseagreen;
 }
 
+
 .jumbotron {
-    background-image: url("/img/makechange.jpg");
+    background-image: url("/img/makechange.jpg"); 
     background-repeat: no-repeat;
     background-size: cover; 
-    background-size:100% 500px;
+    background-size:100% 500px; 
+
+    
 }
+
+
 .blog-post {
     margin-bottom: 35px;
 }
@@ -331,7 +330,7 @@ text-align: center;
 /* MEDIA QUERIES */
 
 
-@media screen and (max-width: 480px){
+@media screen and (max-width: 670px){
     .siteMission {
       width: 90%;
     }
@@ -349,47 +348,84 @@ text-align: center;
     .footer img {
         padding: 10px;
     }
+
+    .finalh4 {
+        top: 55px;
+       padding-left: 15px;
+       font-size:medium;
+       }
+
+       #themecardsection {
+      
+        flex-wrap: wrap;
+        width: 80%;
+        margin: auto;
+     }
+
+     #projectcard h2 {
+
+        font-size:larger;
+      }
+      
+      #projectcard h3 {
+         font-size:medium;
+      }
+
+.receiptitems {
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+.total {
+ 
+    position: unset;
+    bottom: 0;
+    margin-bottom: 85px;
+}
+.paymentMeths  {
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+}
+
+.masterc {
+    padding:5px;
+
+}
+.visa {
+      padding:5px;
+}
+
+.paypal {
+       padding:5px;
+}
+
+.finalbasket {
+  height: 0;
+ 
+}
+.basketnumber {
+    padding: 0px;
+}
+
+.sendNow  {
+    margin-bottom: 20px;
+  }
+  .finalbasket {
+    margin-bottom: 30px;
   }
 
-  @media screen and (min-width: 481px){
+  }
+
+
+
+
+    /* LARGER THAN MOBILE SCREEN */
+
+ @media screen and (min-width: 671px){
     
     .showmob {display: none;}
+  } 
 
-   
-
-  }
-
-
-
-  /* #themecardsection {
-    /*    min-height: 80vh; */
-    /*    flex-wrap: wrap; */
-    /*    width: 92%; */
-    /*    margin: auto; */
-       /* justify-content: space-between; 
-    }
-    
-    .outerthemebox {
-    /*  width: 225px; */
-     /* margin-bottom: 10px; 
-     margin: 5px;
-    }
-    
-    #middlebox {
-    /*     height: 170px; 
-        text-align: center;
-    }
-    
-        
-      }
-    
-    /* LARGER THAN MOBILE SCREEN */
-    
-      /* @media screen and (min-width: 481px){
-        
-        .showmob {display: none;}
-    
-      } */
-     /* 
-
+  
   
