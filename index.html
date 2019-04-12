@@ -90,9 +90,10 @@
                     <h4 class="finalh4">&#8725;all projects</h4>
                     <div class="dropdown-menu">
                       <a @click="view ='home'" class="dropdown-item" href="#">HOME</a>
-                      <a class="dropdown-item active" href="#">ALL PROJECTS</a>
-                      <a @click="view ='basket'" class="dropdown-item">YOUR BASKET</a>
-                      <a @click="view ='blog'" class="dropdown-item">BLOG</a>
+                      <a class="dropdown-item disabled" href="#">ALL PROJECTS</a>
+                      <a @click="view ='basket'" class="dropdown-item" href="#">YOUR BASKET</a>
+                      <a @click="view ='blog'" class="dropdown-item"href="#">BLOG</a>
+                      <a @click="view ='credits'" class="dropdown-item" href="#">CREDITS</a>
                     </div>
                 </ul>
               </div> <!-- end of div siteTitle-->
@@ -196,8 +197,10 @@
                     <div class="dropdown-menu">
                       <a @click="view ='home'" class="dropdown-item" href="#">HOME</a>
                       <a @click="view ='allprojects'" class="dropdown-item" href="#">ALL PROJECTS</a>
+                      <a class="dropdown-item disabled">PROJECT DETAIL</a>
                       <a @click="view ='basket'" class="dropdown-item" href="#">YOUR BASKET</a>
-                      <a @click="view ='blog'" class="dropdown-item">BLOG</a>
+                      <a @click="view ='blog'" class="dropdown-item" href="#">BLOG</a>
+                      <a @click="view ='credits'" class="dropdown-item" href="#">CREDITS</a>
                     </div>
                 </ul>
               </div> <!-- end of div siteTitle-->
@@ -275,8 +278,9 @@
                       <div class="dropdown-menu">
                         <a @click="view ='home'" class="dropdown-item" href="#">HOME</a>
                         <a @click="view ='allprojects'" class="dropdown-item" href="#">ALL PROJECTS</a>
-                        <a @click="view ='basket'" class="dropdown-item active">YOUR BASKET</a>
-                        <a @click="view ='blog'" class="dropdown-item">BLOG</a>
+                        <a @click="view ='basket'" class="dropdown-item disabled">YOUR BASKET</a>
+                        <a @click="view ='blog'" class="dropdown-item" href="#">BLOG</a>
+                        <a @click="view ='credits'" class="dropdown-item" href="#">CREDITS</a>
                       </div>
                   </ul>
                 </div> <!-- end of div siteTitle-->
@@ -291,21 +295,21 @@
                   <img src="./img/thankyou.jpg" style="width:100%">
                   <img src="./img/kenyacharity.jpg" style="width:100%">
                 <!-- hide the below imgs for large screens -->
-                  <img src="./img/watergirls.jpg" style="width:100%">
-                  <img src="./img/dosomething.jpg" style="width:100%">
-                  <img src="./img/cutekid.jpg" style="width:100%">
-                  <img src="./img/watergirls.jpg" style="width:100%">
-                  <img src="./img/thankyou.jpg" style="width:100%">
+                  <!-- <img class="showmob" src="./img/watergirls.jpg" style="width:100%">
+                  <img class="showmob" src="./img/dosomething.jpg" style="width:100%">
+                  <img class="showmob" src="./img/cutekid.jpg" style="width:100%">
+                  <img class="showmob" src="./img/watergirls.jpg" style="width:100%">
+                  <img class="showmob" src="./img/thankyou.jpg" style="width:100%"> -->
                 </div>
                 <div class="column">
                   <img src="./img/watergirls.jpg" style="width:100%">
                   <img src="./img/dosomething.jpg" style="width:100%">
                   <img src="./img/cutekid.jpg" style="width:100%">
                 <!-- hide the below imgs for large screens -->
-                  <img src="./img/thankyou.jpg" style="width:100%">
-                  <img src="./img/kenyacharity.jpg" style="width:100%">
-                  <img src="./img/thankyou.jpg" style="width:100%">
-                  <img src="./img/kenyacharity.jpg" style="width:100%">
+                  <!-- <img class="showmob" src="./img/thankyou.jpg" style="width:100%">
+                  <img class="showmob" src="./img/kenyacharity.jpg" style="width:100%">
+                  <img class="showmob" src="./img/thankyou.jpg" style="width:100%">
+                  <img class="showmob" src="./img/kenyacharity.jpg" style="width:100%"> -->
                 </div>
               </div><!-- end of div finalimg-->
             </div> <!-- end of div class dflex col-8 -->
@@ -367,7 +371,6 @@
           </div> <!-- end of div class row -->
         </div> <!-- end of div class container-fluid -->
       </div> <!-- end of div "basket"-->
-<!-- <div>Icons made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
       <div v-if="view == 'blog'">
 
         <div class="row">
@@ -383,8 +386,9 @@
                     <div class="dropdown-menu">
                       <a @click="view ='home'" class="dropdown-item" href="#">HOME</a>
                       <a @click="view ='allprojects'" class="dropdown-item" href="#">ALL PROJECTS</a>
-                      <a @click="view ='basket'" class="dropdown-item">YOUR BASKET</a>
-                      <a @click="view ='blog'" class="dropdown-item active">BLOG</a>
+                      <a @click="view ='basket'" class="dropdown-item" href="#">YOUR BASKET</a>
+                      <a @click="view ='blog'" class="dropdown-item disabled">BLOG</a>
+                      <a @click="view ='credits'" class="dropdown-item" href="#">CREDITS</a>
                     </div>
                 </ul>
               </div> <!-- end of div siteTitle-->
@@ -518,6 +522,7 @@
             </div><!-- /.blog-post -->
           </div><!-- /.blog-main -->
 
+
           <aside class="col-md-4 blog-sidebar">
             <div class="p-4 mb-3 bg-light rounded">
               <!-- <h4 image here?</h4> -->
@@ -555,12 +560,122 @@
             <p>
               <a href="#">Back to top</a>
             </p>
-            <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a
-                href="https://twitter.com/mdo">@mdo</a>.</p>
-    
+           
           </footer>
 
       </div> <!-- end of v-if blog-->
+
+
+      <div v-if="view == 'credits'"> 
+          <div class="row">
+                  <div class="col-12">
+                    <div class="finalheader ">
+                      <div class="siteTitle ">
+                        <ul class="nav">
+                          <li class="nav-item-dropdown">
+                            <a class="nav-link" data-toggle="dropdown" href="#">
+                              <h1>buyGood</h1>
+                            </a>
+                            <h4 class="finalh4">&#8725;siteCredits</h4>
+                            <div class="dropdown-menu">
+                              <a @click="view ='home'" class="dropdown-item" href="#">HOME</a>
+                              <a @click="view ='allprojects'" class="dropdown-item" href="#">ALL PROJECTS</a>
+                              <a @click="view ='basket'" class="dropdown-item" href="#">YOUR BASKET</a>
+                              <a @click="view ='blog'" class="dropdown-item" href="#">BLOG</a>
+                              <a @click="view ='credits'" class="dropdown-item disabled">CREDITS</a>
+                            </div>
+                        </ul>
+                      </div> <!-- end of div siteTitle-->
+                    </div><!-- end of div class finalheader-->
+                  </div> <!-- end of div class col-12-->
+                </div> <!-- end of div class row -->
+
+          <div class="row">
+          <div class="part2 col-12">
+            <p>API provided by<a href="https://www.globalgiving.org/api/"> <img src="./img/GG_logo.png"></a></p>
+          </div>
+                </div>
+
+  <div class="row">
+      <div class="d-flex cats"> 
+
+      <div class="icons">
+          <h1>iconCredits</h1>
+
+      <p>Paypal, Visa & Mastercard Icons made by <br>
+          <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a></p>
+
+      <p>Basket, Blog, Lightbulb icons made by <br><a href="https://www.freepik.com/" title="Freepik">Freepik</a> 
+          <br>
+          <br>from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>  is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    
+          title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></p>
+      </div> 
+
+      <div class="templates">
+          <h1>templateCredits</h1>
+          <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a
+              href="https://twitter.com/mdo">@mdo</a>.</p>
+      </div>
+
+      <div class="mentors">
+          <h1>mentorCredits</h1>
+          <p>and special thanks to my<a
+            href="https://ubiqum.com/"> Ubiqum</a> mentors!</p>
+      </div>
+
+      </div>
+
+  </div><!-- end of div row -->
+
+
+  <div class="row">
+      <!-- <h1>photoCredits</h1> -->
+  <div class="photos d-flex" >
+    
+    <div class="col"> <img src="./img/perrygronehands.jpg" style="width:60%" alt="hands image">
+      <p>All hands on deck <a href="https://unsplash.com/@perrygrone" target="_blank">@perrygrone</a></p> 
+    </div>
+         
+  <div class="col"> <img src="./img/cutekid.jpg" style="width:50%"alt="boyinboat">
+   <p> Boy playing in a traditional Papuan boat by <a href=" https://unsplash.com/@irisuijttewaal" target="_blank">@irisuijttewaal</a></p> 
+    </div> 
+         
+    <div class="col"> <img src="./img/kenyacharity.jpg" style="width:50%" alt="kenya aid">
+      <p>Serving the food package by <a href="https://unsplash.com/@gxm" target="_blank">@gxm</a></p> 
+    </div>
+
+<div class="col"><img src="./img/dosomething.jpg" style="width:50%" alt="do something">
+  <p>do something great by <a href="https://unsplash.com/@clarktibbs" target="_blank">@clarktibbs</a></p> 
+</div>
+
+</div><!-- end of div photos -->
+</div><!-- end of div row -->
+
+<div class="row"> 
+    <div class="photos d-flex"> 
+          
+        <div class="col"> <img src="./img/thankyou.jpg" style="width:50%" alt="thank you">
+          <p>thank you by <a href="https://unsplash.com/@morvanic" target="_blank">@morvanic</a></p>
+        </div>
+           
+         
+
+          <div class="col"> <img src="./img/watergirls.jpg" style="width:50%" alt="water girls">
+            <p>Water girls by <a href="https://unsplash.com/@akeenster" target="_blank">@akeenster</a></p> 
+          </div>
+           
+            <div class="col">  <img src="./img/makechange.jpg" style="width:50%" alt="hands change">
+              <p>Change for change  by <a href="https://unsplash.com/@katyukawa" target="_blank">@katyukawa</a></p>
+            </div>
+  
+            </div><!-- end of div photos -->
+  
+          </div><!-- end of div row -->
+
+
+  </div><!-- end of div view credits -->
+  
+
      
       <div class="row ">
           <div class="col-12 footer d-flex ">
@@ -592,13 +707,11 @@
                 <ol class="list-unstyled">
                   <p class="media2hide">.........</p>
                   <li class="media2hide"><a href="#" target="_blank">Privacy Policy</a></li>
-                  <li class="media2hide"><a href="#" target="_blank">site Credits</a></li>
+                  <li class="media2hide"><a @click="view ='credits'">site Credits</a></li>
                   <p class="designedby">site designed by sakisol</p>
                 </ol>
               </div>
       
-
-
             </div><!-- end of div class footer col-12 -->
         </div> <!-- end of div class row -->
         <div class=""> 

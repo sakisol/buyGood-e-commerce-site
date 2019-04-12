@@ -37,9 +37,9 @@ body {
     /* background-color: lightseagreen; */
     /* color: white; */
     color: black;
-    border: solid;
-    border-color: lightseagreen;
-    border-width: thin;
+    /* border: solid;
+    border-color: lightseagreen; 
+    border-width: thin; */
 }
 .footer li a {
     /* color: white;
@@ -317,9 +317,7 @@ text-align: center;
     background-image: url("/img/makechange.jpg"); 
     background-repeat: no-repeat;
     background-size: cover; 
-    background-size:100% 500px; 
-
-    
+    background-size:100% 500px;   
 }
 
 
@@ -327,8 +325,35 @@ text-align: center;
     margin-bottom: 35px;
 }
 
+/*SITE CREDITS */
+
+.cats, .icons, .mentors, .templates {
+
+    flex-direction: row;
+    padding: 0px 70px 0px 20px;
+}
+
+.icons {
+    padding: 0px 70px 0px 80px;
+}
+
+.mentors {
+ 
+    padding: 0px 70px 0px 80px;
+}
+
+.part2 {
+    width: 30%;
+    text-align: center;
+    }
+
+
 /* MEDIA QUERIES */
 
+
+@media screen and (max-width: 400px) {
+
+}
 
 @media screen and (max-width: 670px){
     .siteMission {
@@ -425,6 +450,8 @@ text-align: center;
  @media screen and (min-width: 671px){
     
     .showmob {display: none;}
+
+
   } 
 
   
