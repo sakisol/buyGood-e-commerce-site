@@ -308,7 +308,7 @@ option {
 }
 
 .jumbotron {
-  background-image: url("../img/makechange.jpg");
+  background-image: url("makechange.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-size: 100% 500px;
