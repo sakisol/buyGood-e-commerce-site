@@ -305,7 +305,9 @@
                           href="#"
                           >ALL PROJECTS</a
                         >
-                        <a class="dropdown-item disabled">PROJECT DETAIL</a>
+                        <a class="dropdown-item disabled" href="#"
+                          >PROJECT DETAIL</a
+                        >
                         <a
                           @click="view ='basket'"
                           class="dropdown-item"
@@ -334,21 +336,71 @@
           <!-- end of div class row -->
 
           <div class="row">
-            <div class="col-12">
+            <div class="col">
               <div class="selected">
-                <img
-                  v-bind:src="selectedProj.image.imagelink[5].url"
-                  width="100%"
-                />
+                <img v-bind:src="selectedProj.image.imagelink[3].url" />
               </div>
             </div>
             <!-- end of div class col-12 -->
+
+            <div id="projDonateInfo" class=" col d-flex ">
+              <div class="donationinfo">
+                <p>
+                  &euro;
+                  {{ selectedProj.donationOptions.donationOption[0].amount }}*
+                </p>
+                <h6>*the minimum requested by the project organisation</h6>
+              </div>
+
+              <img
+                class="basketicon"
+                @click="addtoBasket(selectedProj)"
+                src="./img/addbasket.png"
+                alt="basket image"
+              />
+              <h3>CONTRIBUTE</h3>
+
+              <h6>
+                *a
+                <a
+                  href="#"
+                  data-toggle="tooltip"
+                  class="toolA"
+                  data-placement="bottom"
+                  title="10% off!"
+                  >discount</a
+                >
+                applies for dontation to 3 or more projects*
+              </h6>
+              <h6>
+                *the least expensive donation is *paid for by buyGood*(removed)
+                after donation to 4 or projects
+              </h6>
+              <hr />
+              <div class="removeDonation">
+                <!-- <button> -->
+                <img
+                  class="basketicon"
+                  v-on:click="removefromBasket(selectedProj)"
+                  src="./img/emptybasket.png"
+                  alt="basket image"
+                />
+                <h3>REMOVE</h3>
+                <hr />
+                <!-- </button> -->
+              </div>
+            </div>
+            <!-- end of div id projDonateInfo -->
+
+            <!-- <div class="addDonation"> -->
+            <!-- </div> -->
+            <!-- end of div class addDonation -->
           </div>
           <!-- end of div class row -->
 
-          <div class="row">
-            <div class="projectinfo col-12 d-flex">
-              <div id="projectcard" class="col-8">
+          <div class="row projectinfo">
+            <div class="col-12 d-flex">
+              <div id="projectcard" class="col-6">
                 <h2>{{ selectedProj.title }}</h2>
 
                 <h3>Summary</h3>
@@ -360,62 +412,20 @@
                 <h3>Need</h3>
                 <p>{{ selectedProj.need }}</p>
               </div>
-              <!-- end of div id projectcard -->
 
-              <div id="projDonateInfo" class=" d-flex col-4">
-                <div class="donationinfo">
-                  <p>
-                    &euro;
-                    {{ selectedProj.donationOptions.donationOption[0].amount }}*
-                  </p>
-                  <h6>*the minimum requested by the project organisation</h6>
-                </div>
-                <hr />
-                <!-- v-for="selected in searchProjects" -->
-                <!-- <div class="addDonation"> -->
-                <img
-                  class="basketicon"
-                  @click="addtoBasket(selectedProj)"
-                  src="./img/addbasket.png"
-                  alt="basket image"
-                />
-                <p>CONTRIBUTE</p>
-                <h6>
-                  *a
-                  <a
-                    href="#"
-                    data-toggle="tooltip"
-                    class="toolA"
-                    data-placement="bottom"
-                    title="10% off!"
-                    >discount</a
-                  >
-                  applies for dontation to 3 or more projects*
-                </h6>
-                <h6>
-                  *the least expensive donation is *paid for by
-                  buyGood*(removed) after donation to 4 or projects
-                </h6>
+              <div class="globalgivesite col">
+                <h3>
+                  Find out more about this project on the GlobalGiving site:
+                </h3>
 
-                <!-- </div> -->
-                <hr />
-                <!-- <div class="removeDonation"> -->
-                <!-- <button> -->
-                <img
-                  class="basketicon"
-                  v-on:click="removefromBasket(selectedProj)"
-                  src="./img/emptybasket.png"
-                  alt="basket image"
-                />REMOVE
-
-                <!-- </button> -->
-                <!-- </div> -->
+                <a v-bind:href="selectedProj.projectLink" target="_blank">
+                  <img src="./img/GG_logo.png" class="globalgiveicon" />
+                </a>
               </div>
-              <!-- end of div id projectcard -->
             </div>
-            <!-- end of div class col-12 -->
+            <!-- end of div col-12 -->
           </div>
-          <!-- end of div class row -->
+          <!-- end of div class projectinfo row -->
         </div>
         <!-- end of div projDetail-->
 
@@ -447,6 +457,7 @@
                           <a
                             @click="view ='basket'"
                             class="dropdown-item disabled"
+                            href="#"
                             >YOUR BASKET</a
                           >
                           <a
@@ -479,22 +490,11 @@
                   <div class="column">
                     <img src="./img/thankyou.jpg" style="width:100%" />
                     <img src="./img/kenyacharity.jpg" style="width:100%" />
-                    <!-- hide the below imgs for large screens -->
-                    <!-- <img class="showmob" src="./img/watergirls.jpg" style="width:100%">
-                  <img class="showmob" src="./img/dosomething.jpg" style="width:100%">
-                  <img class="showmob" src="./img/cutekid.jpg" style="width:100%">
-                  <img class="showmob" src="./img/watergirls.jpg" style="width:100%">
-                  <img class="showmob" src="./img/thankyou.jpg" style="width:100%"> -->
                   </div>
                   <div class="column">
                     <img src="./img/watergirls.jpg" style="width:100%" />
                     <img src="./img/dosomething.jpg" style="width:100%" />
                     <img src="./img/cutekid.jpg" style="width:100%" />
-                    <!-- hide the below imgs for large screens -->
-                    <!-- <img class="showmob" src="./img/thankyou.jpg" style="width:100%">
-                  <img class="showmob" src="./img/kenyacharity.jpg" style="width:100%">
-                  <img class="showmob" src="./img/thankyou.jpg" style="width:100%">
-                  <img class="showmob" src="./img/kenyacharity.jpg" style="width:100%"> -->
                   </div>
                 </div>
                 <!-- end of div finalimg-->
@@ -607,7 +607,10 @@
                           href="#"
                           >YOUR BASKET</a
                         >
-                        <a @click="view ='blog'" class="dropdown-item disabled"
+                        <a
+                          @click="view ='blog'"
+                          class="dropdown-item disabled"
+                          href="#"
                           >BLOG</a
                         >
                         <a
@@ -896,16 +899,12 @@
             <!-- /.blog-main -->
 
             <aside class="col-md-4 blog-sidebar">
-              <div class="p-4 mb-3 bg-light rounded">
-                <!-- <h4 image here?</h4> -->
-              </div>
-
               <div class="p-4">
                 <h6 class="font-italic">Charitable Sites to visit:</h6>
                 <ol class="list-unstyled">
                   <li>
                     <a href="https://www.globalgiving.org/" target="_blank"
-                      >GobalGiving</a
+                      >GlobalGiving</a
                     >
                   </li>
                   <li>
@@ -1018,6 +1017,7 @@
                         <a
                           @click="view ='credits'"
                           class="dropdown-item disabled"
+                          href="#"
                           >CREDITS</a
                         >
                       </div>
@@ -1035,7 +1035,10 @@
           <div class="row">
             <div class="part2 col-12">
               <p>
-                API provided by<a href="https://www.globalgiving.org/api/">
+                API provided by<a
+                  href="https://www.globalgiving.org/api/"
+                  target="_blank"
+                >
                   <img src="./img/GG_logo.png"
                 /></a>
               </p>
@@ -1234,7 +1237,7 @@
             <div class="col">
               <ol class="list-unstyled">
                 <p class="media2hide">Pages:</p>
-                <li class="media2hide" @click="view ='allprojects'">
+                <li class="media2hide" @click="changeView('allprojects')">
                   Projects
                 </li>
                 <img
@@ -1242,8 +1245,8 @@
                   @click="view ='allprojects'"
                   src="img/idea32p.png"
                 />
-                <li class="media2hide" @click="view ='basket'">Basket</li>
-                <li class="media2hide" @click="view ='blog'">Blog</li>
+                <li class="media2hide" @click="changeView('basket')">Basket</li>
+                <li class="media2hide" @click="changeView('blog')">Blog</li>
               </ol>
             </div>
 
@@ -1260,11 +1263,9 @@
             <div class="col">
               <ol class="list-unstyled">
                 <p class="media2hide">.........</p>
+
                 <li class="media2hide">
-                  <a href="#" target="_blank">Privacy Policy</a>
-                </li>
-                <li class="media2hide">
-                  <a @click="view ='credits'">site Credits</a>
+                  <a @click="changeView('credits')">site Credits</a>
                 </li>
                 <p class="designedby">site designed by sakisol</p>
               </ol>

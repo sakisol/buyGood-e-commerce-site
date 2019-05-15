@@ -12,6 +12,10 @@ var app = new Vue({
     pageIndex: 0
   },
   methods: {
+    changeView(page) {
+      this.view = page; //change to indicated page id name
+      window.scrollTo(0, 0); //go to the top of the page
+    },
     getItems: function() {
       var url =
         "https://api.globalgiving.org/api/public/projectservice/all/projects/active.json?api_key=f532b2d3-9dc1-428c-9f46-148656571409";
